@@ -1,18 +1,25 @@
 package com.felixweb.projeto.resources;
 
+<<<<<<< HEAD
 import com.felixweb.projeto.domain.Categoria;
+=======
+>>>>>>> origin/master
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
+=======
+>>>>>>> origin/master
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
 
     @RequestMapping(method = RequestMethod.GET)
+<<<<<<< HEAD
     public List<Categoria> listar () {
 
         Categoria cat1 = new Categoria(1,"Informatica");
@@ -25,6 +32,10 @@ public class CategoriaResource {
         lista.add(cat3);
 
         return lista;
+=======
+    public String listar () {
+        return "rest Esta Funcionando";
+>>>>>>> origin/master
     }
 
 
