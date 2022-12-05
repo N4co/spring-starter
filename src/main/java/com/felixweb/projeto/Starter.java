@@ -1,8 +1,12 @@
 package com.felixweb.projeto;
 
 import com.felixweb.projeto.domain.Categoria;
+import com.felixweb.projeto.domain.Cidade;
+import com.felixweb.projeto.domain.Estado;
 import com.felixweb.projeto.domain.Produto;
 import com.felixweb.projeto.repositories.CategoriaRepository;
+import com.felixweb.projeto.repositories.CidadeRepository;
+import com.felixweb.projeto.repositories.EstadoRepository;
 import com.felixweb.projeto.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +18,10 @@ import java.util.Arrays;
 @SpringBootApplication
 public class Starter implements CommandLineRunner {
 
+	@Autowired
+	private EstadoRepository estadoRepository;
+	@Autowired
+	private CidadeRepository cidadeRepository;
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	@Autowired
@@ -47,10 +55,23 @@ public class Starter implements CommandLineRunner {
 		p5.getCategorias().addAll(Arrays.asList(cat3));
 		p6.getCategorias().addAll(Arrays.asList(cat3));
 
-
-
-
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6));
+
+		Estado e1 = new Estado(null, "São Paulo");
+		Estado e2 = new Estado(null, "Minas-Gerais");
+		Estado e3 = new Estado(null, "Rio-de-Janeiro");
+
+		Cidade c1 = new Cidade(null, "Ubatuba", e1);
+		Cidade c2 = new Cidade(null, "Belo-Horizonte", e2);
+		Cidade c3 = new Cidade(null, "Saquarema", e3);
+
+		e1.getCidades().addAll(Arrays.asList(c1));
+		e2.getCidades().addAll(Arrays.asList(c2));
+		e3.getCidades().addAll(Arrays.asList(c3));
+
+		estadoRepository.saveAll(Arrays.asList(e1, e2, e3));
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+
 	}
 }
