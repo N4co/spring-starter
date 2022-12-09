@@ -1,5 +1,6 @@
 package com.felixweb.projeto.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.felixweb.projeto.domain.enums.TipoCliente;
 import jakarta.persistence.*;
 
@@ -18,6 +19,7 @@ public class Cliente  implements Serializable {
     private String cpfOuCnpj;
     private Integer tipo;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 

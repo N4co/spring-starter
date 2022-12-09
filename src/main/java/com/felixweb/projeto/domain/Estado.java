@@ -1,5 +1,7 @@
 package com.felixweb.projeto.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,6 +18,8 @@ public class Estado implements Serializable {
     private Integer id;
     private String nome;
 
+
+    @JsonBackReference
     public List<Cidade> getCidades() {
         return cidades;
     }
