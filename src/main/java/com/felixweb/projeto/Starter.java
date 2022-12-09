@@ -1,13 +1,9 @@
 package com.felixweb.projeto;
 
-import com.felixweb.projeto.domain.Categoria;
+import com.felixweb.projeto.domain.*;
 import com.felixweb.projeto.domain.Cidade;
-import com.felixweb.projeto.domain.Estado;
-import com.felixweb.projeto.domain.Produto;
-import com.felixweb.projeto.repositories.CategoriaRepository;
-import com.felixweb.projeto.repositories.CidadeRepository;
-import com.felixweb.projeto.repositories.EstadoRepository;
-import com.felixweb.projeto.repositories.ProdutoRepository;
+import com.felixweb.projeto.domain.enums.TipoCliente;
+import com.felixweb.projeto.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +14,10 @@ import java.util.Arrays;
 @SpringBootApplication
 public class Starter implements CommandLineRunner {
 
+    @Autowired
+    private EnderecoRepository enderecoRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
 	@Autowired
 	private EstadoRepository estadoRepository;
 	@Autowired
@@ -73,5 +73,22 @@ public class Starter implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(e1, e2, e3));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-	}
+        Cliente cli1 = new Cliente(null, "Albert Einsten", "ale@gmail.com", "383.125.489-6", TipoCliente.PESSOA_FISICA);
+        cli1.getTelefones().addAll(Arrays.asList("38334556", "38334446"));
+
+        Cliente cli2 = new Cliente(null, "Mahatma Gandhi", "judi@gmail.com", "333.444.555-6", TipoCliente.PESSOA_JURIDICA);
+        cli2.getTelefones().addAll(Arrays.asList("38324558", "34587985"));
+
+        Endereco end1 = new Endereco(c1, null, "Rua Da Tecnologia", "105", "Casa", "Bairro do Java", "Cep: 11680000-00", cli1);
+        Endereco end2 = new Endereco(c2, null, "Rua Da Informação", "218", "Apartamento", "Bairro do JavaScript", "Cep: 12345678-00", cli1);
+
+        Endereco end3 = new Endereco(c1, null, "Rua da Transformação", "217", "Apartamento", "Bairro da Vida", "Cep: 13456789.000", cli2);
+
+        cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+        cli2.getEnderecos().addAll((Arrays.asList(end3)));
+
+        clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+        enderecoRepository.saveAll(Arrays.asList(end1, end2, end3));
+
+    }
 }
