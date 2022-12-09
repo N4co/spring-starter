@@ -2,6 +2,7 @@ package com.felixweb.projeto;
 
 import com.felixweb.projeto.domain.*;
 import com.felixweb.projeto.domain.Cidade;
+import com.felixweb.projeto.domain.enums.EstadoPagamento;
 import com.felixweb.projeto.domain.enums.TipoCliente;
 import com.felixweb.projeto.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 
 @SpringBootApplication
 public class Starter implements CommandLineRunner {
 
-    @Autowired
+	@Autowired
+	private PedidoRepository pedidoRepository;
+
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+
+	@Autowired
     private EnderecoRepository enderecoRepository;
     @Autowired
     private ClienteRepository clienteRepository;
@@ -90,5 +100,37 @@ public class Starter implements CommandLineRunner {
         clienteRepository.saveAll(Arrays.asList(cli1, cli2));
         enderecoRepository.saveAll(Arrays.asList(end1, end2, end3));
 
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		Pedido ped1 = new Pedido(null, sdf.parse("10/12/2022 10:25"), end1, cli1);
+		Pedido ped2 = new Pedido(null, sdf.parse("09/12/2022 14:25"), end2, cli1);
+		Pedido ped3 = new Pedido(null, sdf.parse("08/12/2022 16:25"), end3, cli2);
+
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6 );
+		ped1.setPagamento(pagto1);
+		Pagamento pgto2 = new PagamentoComCartao(null, EstadoPagamento.PENDENTE, ped2, 4 );
+		ped2.setPagamento(pgto2);
+		Pagamento pgto3 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE,
+	 			ped3,  sdf.parse("08/12/2022 00:00"), null);
+		ped3.setPagamento(pgto3);
+
+		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		cli2.getPedidos().addAll(Arrays.asList(ped3));
+
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2, ped3));
+		pagamentoRepository.saveAll(Arrays.asList(pagto1, pgto2, pgto3));
+
+		ItemPedido ip1 = new ItemPedido(ped1, p3, 0.00, 5, 800.00);
+		ItemPedido ip2 = new ItemPedido(ped2, p4, 5.00,4, 1800.00);
+		ItemPedido ip3 = new ItemPedido(ped3, p1, 15.00, 3,2500.00);
+
+		ped1.getItens().addAll(Arrays.asList((ip1)));
+		ped2.getItens().addAll(Arrays.asList((ip2)));
+		ped3.getItens().addAll(Arrays.asList((ip3)));
+
+	}
+
+
+
     }
-}
+
