@@ -1,5 +1,7 @@
 package com.felixweb.projeto.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,13 +18,15 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date Instante;
+
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido") // necessario para não gerar o erro quando for
     // transiente para salvar o pedido relacionado com  o mesmo id do pagamento
     //mapemento bidirecional
     private Pagamento pagamento;
+
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")

@@ -1,5 +1,6 @@
 package com.felixweb.projeto.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.felixweb.projeto.domain.enums.EstadoPagamento;
 import jakarta.persistence.*;
 
@@ -16,6 +17,7 @@ public abstract class Pagamento implements Serializable {
     private Integer id;
     private Integer estado;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "pedido_id") // fazendo o join "juntando " com  o mesmo id do pedido
     @MapsId //determinante para que indique o uso do mesmo Id do pedido

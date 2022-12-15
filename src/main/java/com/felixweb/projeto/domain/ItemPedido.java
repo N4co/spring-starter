@@ -1,5 +1,6 @@
 package com.felixweb.projeto.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 
@@ -9,6 +10,8 @@ import java.util.Objects;
 @Entity
 public class ItemPedido implements Serializable {
     static final long serialVersionUID = 1l;
+
+    @JsonIgnore
     @EmbeddedId //id embutido em um tipo auxiliar
     private ItemPedidoPK id = new ItemPedidoPK();
     private Double desconto;
@@ -33,12 +36,12 @@ public class ItemPedido implements Serializable {
         return id;
 
     }
+    @JsonIgnore
     public Pedido getPedido () {
-        return getPedido();
+        return id.getPedido();
     }
-
-       public Produto getProduto () {
-        return getProduto();
+    public Produto getProduto () {
+        return id.getProduto();
 
     }
     public Double getDesconto() {

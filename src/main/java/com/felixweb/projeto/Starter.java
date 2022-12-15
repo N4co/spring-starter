@@ -19,6 +19,8 @@ import java.util.Date;
 public class Starter implements CommandLineRunner {
 
 	@Autowired
+	private ItemPedidoRepository itemPedido;
+	@Autowired
 	private PedidoRepository pedidoRepository;
 
 	@Autowired
@@ -127,6 +129,9 @@ public class Starter implements CommandLineRunner {
 		ped1.getItens().addAll(Arrays.asList((ip1)));
 		ped2.getItens().addAll(Arrays.asList((ip2)));
 		ped3.getItens().addAll(Arrays.asList((ip3)));
+
+		itemPedido.saveAll(Arrays.asList(ip1,ip2, ip3));
+
 
 	}
 
