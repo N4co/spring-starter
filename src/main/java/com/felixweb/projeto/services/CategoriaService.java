@@ -20,7 +20,17 @@ public class CategoriaService {
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Linha não encontrada Id: " + id + ", Tipo: " + Categoria.class.getName(),obj));
     }
+
+    public Categoria insert(Categoria obj) {
+       obj.setId(null);// garantia que esta setando um obj null que ainda não existe
+        return repo.save(obj);
     }
+
+    public Categoria update(Categoria obj) {
+        find(obj.getId());
+        return repo.save(obj);
+    }
+}
 
 
 
