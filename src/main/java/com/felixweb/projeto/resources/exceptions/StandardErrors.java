@@ -22,6 +22,7 @@ public class StandardErrors implements Serializable {
     }
 
     public Integer getStatus() {
+
         return status;
     }
 
