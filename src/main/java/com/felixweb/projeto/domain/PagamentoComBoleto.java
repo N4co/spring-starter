@@ -2,8 +2,8 @@ package com.felixweb.projeto.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.felixweb.projeto.domain.enums.EstadoPagamento;
-import jakarta.persistence.Entity;
 
+import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Date;
 

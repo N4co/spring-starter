@@ -1,4 +1,4 @@
-package com.felixweb.projeto.services;
+package com.felixweb.projeto.resources.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
     private static final long serialVersionUID = 1L;
@@ -9,4 +9,6 @@ public class ObjectNotFoundException extends RuntimeException{
     public ObjectNotFoundException(String msg, Throwable cause) {
         super(msg, cause);
     }
+
+
 }

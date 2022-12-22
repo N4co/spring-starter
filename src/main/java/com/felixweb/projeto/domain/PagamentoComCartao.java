@@ -1,8 +1,9 @@
 package com.felixweb.projeto.domain;
 
 import com.felixweb.projeto.domain.enums.EstadoPagamento;
-import jakarta.persistence.Entity;
 
+
+import javax.persistence.Entity;
 import java.io.Serializable;
 @Entity
 public class PagamentoComCartao extends Pagamento implements Serializable {

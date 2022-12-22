@@ -1,4 +1,4 @@
-package com.felixweb.projeto.services;
+package com.felixweb.projeto.resources.exceptions;
 
 public class DataIngretyViolationException extends RuntimeException{
     private static final long serialVersionUID = 1L;

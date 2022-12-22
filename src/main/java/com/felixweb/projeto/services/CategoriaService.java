@@ -1,9 +1,11 @@
 package com.felixweb.projeto.services;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.ObjectNotFoundException;
+import com.felixweb.projeto.dto.CategoriaDTO;
+import com.felixweb.projeto.resources.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -15,7 +17,9 @@ import com.felixweb.projeto.domain.Categoria;
 import com.felixweb.projeto.repositories.CategoriaRepository;
 
 @Service
-public class CategoriaService {
+public class CategoriaService implements Serializable {
+
+    private static final long serialVersionUID = 1l;
 
     @Autowired
     private CategoriaRepository repo;
@@ -23,7 +27,8 @@ public class CategoriaService {
     public Categoria find(Integer id) {
         Optional<Categoria> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Linha não encontrada Id: " + id + ", Tipo: " + Categoria.class.getName(), obj));
+                "Linha não encontrada Id: " + id + ", Tipo: " + Categoria.class.getName()));
+
     }
 
     public Categoria insert(Categoria obj) {
@@ -32,6 +37,7 @@ public class CategoriaService {
     }
 
     public Categoria update(Categoria obj) {
+
         find(obj.getId());
         return repo.save(obj);
     }
@@ -53,6 +59,10 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction),orderBy);
         return repo.findAll(pageRequest);
 
+    }
+
+    public Categoria fromDto(CategoriaDTO objDto) {
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 }
 

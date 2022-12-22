@@ -3,12 +3,14 @@ package com.felixweb.projeto.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.felixweb.projeto.domain.enums.TipoCliente;
-import jakarta.persistence.*;
 
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
+
 public class Cliente  implements Serializable {
     static final long serialVersionUID = 1L;
 
