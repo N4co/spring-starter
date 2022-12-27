@@ -3,7 +3,6 @@ package com.felixweb.projeto.services;
 import com.felixweb.projeto.domain.Pedido;
 import com.felixweb.projeto.repositories.PedidoRepository;
 
-import com.felixweb.projeto.resources.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

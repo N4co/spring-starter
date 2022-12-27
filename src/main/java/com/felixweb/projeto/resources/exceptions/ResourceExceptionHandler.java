@@ -26,7 +26,7 @@ public class ResourceExceptionHandler extends RuntimeException {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<StandardErrors> dataIntegrity(DataIntegrityViolationException e, HttpServletRequest request) {
 
-        StandardErrors err = new StandardErrors(HttpStatus.BAD_REQUEST.value(), "Erro", System.currentTimeMillis());
+        StandardErrors err = new StandardErrors(HttpStatus.BAD_REQUEST.value(), "não é possivel deletar uma categoria que contem produtos", System.currentTimeMillis());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
 

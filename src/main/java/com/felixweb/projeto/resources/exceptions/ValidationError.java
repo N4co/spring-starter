@@ -1,5 +1,7 @@
 package com.felixweb.projeto.resources.exceptions;
 
+import com.felixweb.projeto.services.FieldMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 

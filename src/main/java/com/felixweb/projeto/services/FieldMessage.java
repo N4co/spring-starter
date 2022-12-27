@@ -1,4 +1,4 @@
-package com.felixweb.projeto.resources.exceptions;
+package com.felixweb.projeto.services;
 
 import java.io.Serializable;
 

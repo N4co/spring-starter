@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.felixweb.projeto.dto.CategoriaDTO;
-import com.felixweb.projeto.resources.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
