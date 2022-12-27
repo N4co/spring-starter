@@ -41,7 +41,8 @@ public class Cliente  implements Serializable {
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipo = (tipo==null) ? null : tipo.getCod();
+        this.tipo = (tipo==null) ? null : tipo.getCod(); // expressão ternária caso venha
+                                                        // null do tipo cliente passa null pro atributo tipo caso contrario passa o codigo
     }
 
     public Integer getId() {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
+import com.felixweb.projeto.domain.Cliente;
 import com.felixweb.projeto.dto.CategoriaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -37,10 +38,10 @@ public class CategoriaService implements Serializable {
 
     public Categoria update(Categoria obj) {
 
-        find(obj.getId());
-        return repo.save(obj);
+        Categoria newObj = find(obj.getId());
+        updateData(newObj, obj);
+        return repo.save(newObj);
     }
-
     public void delete(Integer id) {
         find(id);
         try {
@@ -61,9 +62,16 @@ public class CategoriaService implements Serializable {
     }
 
     public Categoria fromDto(CategoriaDTO objDto) {
+
         return new Categoria(objDto.getId(), objDto.getNome());
     }
+
+
+    private void updateData(Categoria newObj, Categoria obj) {
+     newObj.setNome(obj.getNome());
 }
+    }
+
 
 
 
