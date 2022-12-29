@@ -1,6 +1,7 @@
 package com.felixweb.projeto.resources.exceptions;
 
-import org.hibernate.ObjectNotFoundException;
+
+import com.felixweb.projeto.services.ObjectNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,9 @@ public class ResourceExceptionHandler extends RuntimeException {
 
 
     @ExceptionHandler(ObjectNotFoundException.class)
-    public ResponseEntity<StandardErrors> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
+    public ResponseEntity<StandardErrors> objectNotFoundException(ObjectNotFoundException e, HttpServletRequest request) {
 
-        StandardErrors err = new StandardErrors( HttpStatus.NOT_FOUND.value(), "Não Encontrado", System.currentTimeMillis());
+        StandardErrors err = new StandardErrors( HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
 

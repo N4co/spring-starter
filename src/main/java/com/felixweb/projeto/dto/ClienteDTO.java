@@ -1,11 +1,13 @@
 package com.felixweb.projeto.dto;
 
 import com.felixweb.projeto.domain.Cliente;
+import com.felixweb.projeto.services.validator.ClienteInsert;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+
 
 public class ClienteDTO implements Serializable {
     private static final long seialVersionUID = 1l;
