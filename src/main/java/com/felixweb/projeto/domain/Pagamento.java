@@ -1,6 +1,7 @@
 package com.felixweb.projeto.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.felixweb.projeto.domain.enums.EstadoPagamento;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED) // estrategia usada para gerar tabela das superclasses no banco de dados
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Pagamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -16,6 +18,8 @@ public abstract class Pagamento implements Serializable {
     @Id
     private Integer id;
     private Integer estado;
+
+
 
     @JsonIgnore
     @OneToOne
@@ -29,6 +33,7 @@ public abstract class Pagamento implements Serializable {
         this.estado = (estado==null) ? null : estado.getCod();
         this.pedido = pedido;
     }
+
     public Integer getId() {
         return id;
     }
@@ -50,6 +55,7 @@ public abstract class Pagamento implements Serializable {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.felixweb.projeto.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.felixweb.projeto.domain.enums.EstadoPagamento;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@JsonTypeName("pagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento implements Serializable {
 
     static final long serialVersionUID = 1l;
@@ -18,9 +20,10 @@ public class PagamentoComBoleto extends Pagamento implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date dataPagamento;
 
-    public PagamentoComBoleto () {
+    public PagamentoComBoleto() {
 
     }
+
 
     public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
         super(id, estado, pedido);

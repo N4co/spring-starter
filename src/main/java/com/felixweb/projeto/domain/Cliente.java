@@ -82,9 +82,7 @@ public class Cliente  implements Serializable {
 
         return TipoCliente.toEnum(tipo);
     }
-
     public void setTipo(TipoCliente tipo) {
-
         this.tipo = tipo.getCod();
     }
 
@@ -102,10 +100,6 @@ public class Cliente  implements Serializable {
 
     public void setTelefones(Set<String> telefones) {
         this.telefones = telefones;
-    }
-
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
     }
 
     public List<Pedido> getPedidos() {
