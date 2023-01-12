@@ -25,9 +25,9 @@ public class DBService {
     @Autowired
     private EnderecoRepository enderecoRepository;
     @Autowired
-    private ClienteRepository clienteRepository;
-    @Autowired
     private EstadoRepository estadoRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
     @Autowired
     private CidadeRepository cidadeRepository;
     @Autowired
