@@ -1,6 +1,8 @@
 package com.felixweb.projeto.config;
 
 import com.felixweb.projeto.services.DBService;
+import com.felixweb.projeto.services.EmailService;
+import com.felixweb.projeto.services.MockEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,5 +20,9 @@ public class TestConfig {
     public Boolean instantiationDatabase() throws ParseException {
         dbService.instantiateTestDatabase();
         return true;
+    }
+    @Bean
+    public EmailService emailService() {
+        return new MockEmailService();
     }
 }
